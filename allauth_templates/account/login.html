@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load static %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content6 %}
+
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+{% blocktrans %}
+ {% endblocktrans %}
+
+
+<img src="{% static 'icon/skil_note_logo1.jpg' %}" width="100%" height="34%" alt="" class="mb-2">
+
+
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <button type="submit" class="btn btn-outline-info btn-block mb-1">Login</button>
+</form>
+<a class="primaryAction btn btn-outline-primary float-right btn-block" href="{{ signup_url }}">회원 가입</a>
+<br><br><br>
+
+{% endblock %}
+
+{% block sidearea6 %}
+
+보일러 플레이트
+<table class="table table-bordered">
+    <td>
+        <a href="http://terecal-hyun.co.kr/skilnote1/myshortcut/node-react-boiler-plate/1">node-react-boiler-plate</a>
+    </td>
+</table>
+
+next js sns clone
+<table class="table table-bordered">
+    <tr>
+        <td>
+            <a href="http://terecal-hyun.co.kr/skilnote1/myshortcut/react-nodebird/1">react-nodebird(1)</a> <br>
+            <a href="http://terecal-hyun.co.kr/skilnote2/myshortcut/react-nodebird/1">react-nodebird(2)</a>
+        </td>
+        <td>쇼핑몰 예정</td>
+    </tr>
+</table>
+
+Django + React
+<table class="table table-bordered">
+    <tr>
+        <td>
+            <a href="http://terecal-hyun.co.kr/skilnote1/myshortcut/drf-instagram-clone/1">drf-instagram-clone</a>
+        </td>
+        <td>
+            예정
+        </td>
+    </tr>
+
+</table>
+
+
+{% endblock %}
+
+
+
+<script type="text/javascript">
+{% block extra_js %}
+
+    $(document).ready(function(){
+        console.log("로그인 페이지")
+    });
+
+{% endblock %}
+</script>
