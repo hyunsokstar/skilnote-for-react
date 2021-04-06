@@ -166,9 +166,11 @@ DJANGO_NOTIFICATIONS_CONFIG = {
 #     'include_jquery': True,
 # }
 
-
 INTERNAL_IPS = [
     # ...
     '127.0.0.1',
     # ...
 ]
+
+X_FRAME_OPTIONS = 'ALLOWALL'
+XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']
